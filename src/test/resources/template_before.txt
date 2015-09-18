@@ -1,3 +1,0 @@
-{{johnny}} went to the store.
-
-He wanted to {{buy}} some {{eggs}}.

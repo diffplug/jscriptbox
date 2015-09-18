@@ -1,4 +1,4 @@
-# <img align="left" src="freshmark.png"> FreshMark: Keep your markdown fresh
+# <img align="left" src="jscriptbox.png"> JScriptBox: Make your scripting API language-independent
 <!---freshmark shields
 output = [
 	link(shield('Maven artifact', 'mavenCentral', '{{group}}:{{name}}', 'blue'), 'https://bintray.com/{{org}}/opensource/{{name}}/view'),
