@@ -23,19 +23,13 @@ import javax.script.ScriptException;
 
 import com.diffplug.jscriptbox.ArityN.*;
 
-/**
- * When exposing a scripting API, you want to expose
- * a set of objects and functions to the client code.
- * <p>
- * ScriptBox makes it easy to expose both objects and
- * functions to client code in a language-agnostic way.
- */
+/** API for exposing objects and functions to a scripting environment. */
 public class JScriptBox {
 	private Map<String, Object> names = new HashMap<>();
 
 	protected JScriptBox() {}
 
-	/** Creates a new NashornHarness and returns it. */
+	/** Creates a new JScriptBox and returns it. */
 	public static JScriptBox create() {
 		return new JScriptBox();
 	}
@@ -46,7 +40,7 @@ public class JScriptBox {
 		return this;
 	}
 
-	/** Sets a name in the script to be a value or a function. */
+	/** Sets a name in the script environment to be a value or a function. */
 	public NameSetter set(String name) {
 		return new NameSetter(name);
 	}
