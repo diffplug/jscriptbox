@@ -1,11 +1,6 @@
-buildscript {
-	repositories {
-		jcenter()
-	}
-	dependencies {
-		// applies the Eclipse java formatter
-		classpath "com.diffplug.gradle.spotless:spotless:${VER_SPOTLESS}"
-	}
+plugins {
+	// code formatting
+	id "com.diffplug.gradle.spotless" version "1.2.0"
 }
 
 repositories {
@@ -29,7 +24,6 @@ sourceCompatibility = VER_JAVA
 targetCompatibility = VER_JAVA
 
 dependencies {
-	compile "com.diffplug.durian:durian:${VER_DURIAN}"
 	testCompile "junit:junit:${VER_JUNIT}"
 }
 
@@ -119,7 +113,6 @@ javadoc {
 	options.addStringOption('Xdoclint:none', '-quiet')
 	options.header javadocInfo
 	options.footer javadocInfo
-	options.links('https://diffplug.github.io/durian/javadoc/' + (VER_DURIAN.endsWith('-SNAPSHOT') ? 'snapshot' : VER_DURIAN) + '/')
 	options.links('https://docs.oracle.com/javase/8/docs/api/')
 }
 
