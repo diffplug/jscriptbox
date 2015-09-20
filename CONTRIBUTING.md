@@ -1,8 +1,8 @@
-# Contributing to FreshMark
+# Contributing to JScriptBox
 
 Pull requests are welcome, preferably against `master`.
 
-Every successful Travis CI build on branch `master` is automatically published to [`https://oss.sonatype.org/content/repositories/snapshots`](https://oss.sonatype.org/content/repositories/snapshots/com/diffplug/), and its javadoc are published [here](http://diffplug.github.io/freshmark/javadoc/snapshot/).
+Every successful Travis CI build on branch `master` is automatically published to [`https://oss.sonatype.org/content/repositories/snapshots`](https://oss.sonatype.org/content/repositories/snapshots/com/diffplug/), and its javadoc are published [here](http://diffplug.github.io/jscriptbox/javadoc/snapshot/).
 
 ## Build instructions
 
@@ -21,7 +21,7 @@ If you're getting style warnings, `gradlew spotlessApply` will apply anything ne
 
 ## License
 
-By contributing your code, you agree to license your contribution under the terms of the APLv2: https://github.com/diffplug/durian/blob/master/LICENSE
+By contributing your code, you agree to license your contribution under the terms of the APLv2: https://github.com/diffplug/jscriptbox/blob/master/LICENSE
 
 All files are released with the Apache 2.0 license as such:
 
