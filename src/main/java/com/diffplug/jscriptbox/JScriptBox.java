@@ -34,9 +34,21 @@ public class JScriptBox {
 		return new JScriptBox();
 	}
 
-	/** Sets all of the properties contained in the given map. */
+	/** Sets all of the properties contained in the given map. Throws an error if one of the entry keys isn't a valid identifier. */
 	public JScriptBox setAll(Map<String, ?> map) {
-		names.putAll(map);
+		for (Map.Entry<String, ?> entry : map.entrySet()) {
+			set(entry.getKey()).toValue(entry.getValue());
+		}
+		return this;
+	}
+
+	/** Sets all of the properties contained in the given map for which the key is a valid identifier. */
+	public JScriptBox setAllValid(Map<String, ?> map) {
+		for (Map.Entry<String, ?> entry : map.entrySet()) {
+			if (isValidIdentifier(entry.getKey())) {
+				set(entry.getKey()).toValue(entry.getValue());
+			}
+		}
 		return this;
 	}
 
@@ -47,11 +59,15 @@ public class JScriptBox {
 
 	/** Checks that the given name is a valid identifier. */
 	static String checkValidIdentifier(String name) {
-		Check.that(name.length() > 0 &&
-				Character.isJavaIdentifierStart(name.codePointAt(0)) &&
-				name.codePoints().skip(1).allMatch(Character::isJavaIdentifierPart),
-				"'%0' is not a valid identifier", name);
+		Check.that(isValidIdentifier(name), "'%0' is not a valid identifier", name);
 		return name;
+	}
+
+	/** Checks that the given name is a valid identifier. */
+	static boolean isValidIdentifier(String name) {
+		return name.length() > 0 &&
+				Character.isJavaIdentifierStart(name.codePointAt(0)) &&
+				name.codePoints().skip(1).allMatch(Character::isJavaIdentifierPart);
 	}
 
 	/** Fluent API for setting names in this JsHarness. */
