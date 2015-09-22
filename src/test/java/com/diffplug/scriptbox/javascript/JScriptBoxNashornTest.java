@@ -25,9 +25,24 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.diffplug.jscriptbox.JScriptBox;
+import com.diffplug.jscriptbox.TypedScriptEngine;
 import com.diffplug.jscriptbox.javascript.Nashorn;
 
 public class JScriptBoxNashornTest {
+	private int square(int x) {
+		return x * x;
+	}
+
+	@Test
+	public void example() throws ScriptException {
+		TypedScriptEngine engine = JScriptBox.create()
+				.set("square").toFunc1(this::square)
+				.set("x").toValue(9)
+				.buildTyped(Nashorn.language());
+		int squareOfX = engine.eval("square(x)", Integer.class);
+		Assert.assertEquals(81, squareOfX);
+	}
+
 	@Test
 	public void testBasicExpressions() throws ScriptException {
 		ScriptEngine engine = JScriptBox.create().build(Nashorn.language());
