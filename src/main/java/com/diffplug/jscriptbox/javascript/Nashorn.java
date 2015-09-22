@@ -26,8 +26,18 @@ import javax.script.ScriptEngineManager;
 import com.diffplug.jscriptbox.Language;
 
 public class Nashorn {
-	/** Language implementation for javascript using the nashorn engine. */
+	/**
+	 * Language implementation for javascript using the nashorn engine.
+	 * <p>
+	 * If any bindings are created which conflict with reserved
+	 * keywords, an IllegalArgumentException will be thrown.
+	 */
 	public static Language language() {
+		return language(OnReservedKeyword.ERROR);
+	}
+
+	/** Language implementation for javascript using the given policy for resolving any potential conflicts with reserved keywords. */
+	public static Language language(OnReservedKeyword policy) {
 		return map -> {
 			ScriptEngine jsEngine = new ScriptEngineManager().getEngineByName("nashorn");
 			ScriptContext context = jsEngine.getContext();
@@ -36,30 +46,45 @@ public class Nashorn {
 			context.setAttribute(mapName, map, ScriptContext.ENGINE_SCOPE);
 
 			StringBuilder builder = new StringBuilder();
-			map.entrySet().forEach(entry -> {
+			for (String key : map.keySet()) {
+				if (isReserved(key)) {
+					switch (policy) {
+					case ERROR:
+						throw new IllegalArgumentException("'" + key + "' is a reserved keyword.");
+					case MANGLE:
+						key = key + "_";
+						break;
+					case SKIP:
+						continue;
+					default:
+						throw new IllegalArgumentException("Unhandled enum value '" + policy + "'");
+					}
+				}
 				builder.append("var ");
-				builder.append(normalize(entry.getKey()));
+				builder.append(key);
 				builder.append("=");
 				builder.append(mapName);
 				builder.append(".get('");
-				builder.append(entry.getKey());
+				builder.append(key);
 				builder.append("');\n");
-			});
+			}
 			builder.append("delete " + mapName + ";\n");
 			jsEngine.eval(builder.toString());
 			return jsEngine;
 		};
 	}
 
-	private static String normalize(String input) {
-		if (restrictedWords.contains(input)) {
-			return "_" + input;
-		} else {
-			return input;
-		}
+	/** Describes a policy for dealing with reserved keywords. */
+	public enum OnReservedKeyword {
+		ERROR, MANGLE, SKIP;
 	}
 
-	private static final Set<String> restrictedWords = new HashSet<>(Arrays.asList(
+	/** Returns true if the given identifier is a JavaScript reserved keyword. */
+	public static boolean isReserved(String word) {
+		return reservedKeywords.contains(word);
+	}
+
+	private static final Set<String> reservedKeywords = new HashSet<>(Arrays.asList(
 			// JavaScript Reserved Words
 			"abstract", "arguments", "boolean", "break", "byte",
 			"case", "catch", "char", "class", "const",

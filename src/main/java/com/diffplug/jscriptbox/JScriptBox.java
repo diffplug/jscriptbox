@@ -34,36 +34,22 @@ public class JScriptBox {
 		return new JScriptBox();
 	}
 
-	/** Sets all of the properties contained in the given map. Throws an error if one of the entry keys isn't a valid identifier. */
-	public JScriptBox setAll(Map<String, ?> map) {
-		for (Map.Entry<String, ?> entry : map.entrySet()) {
-			set(entry.getKey()).toValue(entry.getValue());
-		}
-		return this;
-	}
-
-	/** Sets all of the properties contained in the given map for which the key is a valid identifier. */
-	public JScriptBox setAllValid(Map<String, ?> map) {
-		for (Map.Entry<String, ?> entry : map.entrySet()) {
-			if (isValidIdentifier(entry.getKey())) {
-				set(entry.getKey()).toValue(entry.getValue());
-			}
-		}
-		return this;
-	}
-
 	/** Sets a name in the script environment to be a value or a function. */
 	public NameSetter set(String name) {
 		return new NameSetter(name);
 	}
 
-	/** Checks that the given name is a valid identifier. */
+	/**
+	 * Checks that the given name is a valid Java identifier.  It's still possible that
+	 * the name is a restricted keyword in the scripting language that you are creating a
+	 * binding for, but there's no way to know at this point.
+	 */
 	static String checkValidIdentifier(String name) {
 		Check.that(isValidIdentifier(name), "'%0' is not a valid identifier", name);
 		return name;
 	}
 
-	/** Checks that the given name is a valid identifier. */
+	/** Returns true if the given name is a valid Java identifier. */
 	public static boolean isValidIdentifier(String name) {
 		return name.length() > 0 &&
 				Character.isJavaIdentifierStart(name.codePointAt(0)) &&
