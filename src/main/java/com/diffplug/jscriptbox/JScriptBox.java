@@ -64,7 +64,7 @@ public class JScriptBox {
 	}
 
 	/** Checks that the given name is a valid identifier. */
-	static boolean isValidIdentifier(String name) {
+	public static boolean isValidIdentifier(String name) {
 		return name.length() > 0 &&
 				Character.isJavaIdentifierStart(name.codePointAt(0)) &&
 				name.codePoints().skip(1).allMatch(Character::isJavaIdentifierPart);

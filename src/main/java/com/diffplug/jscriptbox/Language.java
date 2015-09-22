@@ -17,9 +17,7 @@ package com.diffplug.jscriptbox;
 
 import java.util.Map;
 
-import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
 /** Interface which converts the result of a {@link JScriptBox} into a {@link ScriptEngine}. */
@@ -30,29 +28,4 @@ public interface Language {
 	 * @throws ScriptException
 	 */
 	ScriptEngine initializeEngine(Map<String, Object> names) throws ScriptException;
-
-	/** Language implementation for javascript using the nashorn engine. */
-	public static Language javascript() {
-		return map -> {
-			ScriptEngine jsEngine = new ScriptEngineManager().getEngineByName("nashorn");
-			ScriptContext context = jsEngine.getContext();
-
-			String mapName = "nashornScriptBoxMap";
-			context.setAttribute(mapName, map, ScriptContext.ENGINE_SCOPE);
-
-			StringBuilder builder = new StringBuilder();
-			map.entrySet().forEach(entry -> {
-				builder.append("var ");
-				builder.append(entry.getKey());
-				builder.append("=");
-				builder.append(mapName);
-				builder.append(".");
-				builder.append(entry.getKey());
-				builder.append(";\n");
-			});
-			builder.append("delete " + mapName + ";\n");
-			jsEngine.eval(builder.toString());
-			return jsEngine;
-		};
-	}
 }
