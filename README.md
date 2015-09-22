@@ -21,7 +21,7 @@ output = [
 [![Live chat](https://img.shields.io/badge/gitter-live_chat-brightgreen.svg)](https://gitter.im/diffplug/jscriptbox)
 <!---freshmark /shields -->
 
-When exposing a scripting API, you provide some variables and functions to the script, run the script, then look at which outputs were set and/or functions were called.  JScriptBox provides a mechanism for exposing a Java API to a scripting language in a way which is independent of the script language.  This means that if you write your code using JScriptBox, script authors can use any language supported by JSR-223, such as JavaScript, Ruby, Python, Scheme, [etc.](http://stackoverflow.com/a/14864450/1153071).
+When exposing a scripting API, you provide some variables and functions to the script, run the script, then look at which outputs were set and/or functions were called.  JScriptBox provides a mechanism for exposing a Java API to a scripting language in a way which is independent of the script language.  This means that if you write your code using JScriptBox, script authors can use any language supported by JSR-223, such as JavaScript, Ruby, Python, Scheme, [etc.](http://stackoverflow.com/a/14864450/1153071)
 
 At present, only JavaScript is being used in the wild (in the [FreshMark](https://github.com/diffplug/freshmark) project), but PR's which enhance support for other languages are welcome.
 
@@ -47,7 +47,7 @@ public void example() throws ScriptException {
 }
 ```
 
-In the code above, we provide a `square`  function and an `x` variable.  We then build a Nashorn Javascript engine, but we could have passed any other language just as easily.
+In the code above, we provide a `square`  function and an `x` variable.  We then build a Nashorn Javascript engine, but we could have passed any other language too.  To add a new language, just implement [Language](src/main/java/com/diffplug/jscriptbox/Language.java) (the existing [Nashorn](src/main/java/com/diffplug/jscriptbox/javascript/Nashorn.java) can be a helpful starting point).
 
 <!---freshmark /javadoc -->
 
