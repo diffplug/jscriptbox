@@ -1,7 +1,7 @@
 # JScriptBox releases
 
-### Version 1.1.0 - TBD ([javadoc](http://diffplug.github.io/jscriptbox/javadoc/snapshot/))
+### Version 3.1.0 - TBD ([javadoc](http://diffplug.github.io/jscriptbox/javadoc/snapshot/))
 
-### Version 1.0.0 - September 20th 2015 ([javadoc](http://diffplug.github.io/jscriptbox/javadoc/1.0.0/), [jcenter](https://bintray.com/diffplug/opensource/jscriptbox/1.0.0/view))
+### Version 3.0.0 - September 21st 2015 ([jcenter](https://bintray.com/diffplug/opensource/jscriptbox/3.0.0/view))
 
 * First stable release.
