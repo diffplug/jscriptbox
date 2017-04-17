@@ -1,4 +1,6 @@
 # <img align="left" src="jscriptbox.png"> JScriptBox: Make your scripting API language-independent
+
+[![Join the chat at https://gitter.im/diffplug/jscriptbox](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diffplug/jscriptbox?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!---freshmark shields
 output = [
 	link(shield('Maven artifact', 'mavenCentral', '{{group}}:{{name}}', 'blue'), 'https://bintray.com/{{org}}/opensource/{{name}}/view'),
