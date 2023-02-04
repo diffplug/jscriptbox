@@ -7,8 +7,9 @@ repositories {
 	mavenCentral()
 }
 
-apply from: 干.file('base/java.gradle')
 apply from: 干.file('spotless/java.gradle')
+apply from: 干.file('spotless/freshmark.gradle')
+apply from: 干.file('base/java.gradle')
 apply plugin: 'java-library'
 
 
