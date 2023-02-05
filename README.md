@@ -7,7 +7,7 @@ output = [
   ].join('\n');
 -->
 [![Maven artifact](https://img.shields.io/badge/mavenCentral-com.diffplug.jscriptbox%3Ajscriptbox-blue.svg)](https://central.sonatype.com/artifact/com.diffplug.jscriptbox/jscriptbox/3.0.0)
-[![Changelog](https://img.shields.io/badge/changelog-3.0.0-blue.svg)](CHANGELOG.md)
+[![Changelog](https://img.shields.io/badge/changelog-3.0.1-blue.svg)](CHANGELOG.md)
 [![Javadoc](https://img.shields.io/badge/javadoc-here-blue.svg)](https://javadoc.io/doc/com.diffplug.jscriptbox/jscriptbox)
 <!---freshmark /shields -->
 
