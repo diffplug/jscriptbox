@@ -1,11 +1,11 @@
 /*
- * Copyright 2015 DiffPlug
+ * Copyright (C) 2015-2023 DiffPlug
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,15 +15,13 @@
  */
 package com.diffplug.jscriptbox.javascript;
 
+import com.diffplug.jscriptbox.Language;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-
-import com.diffplug.jscriptbox.Language;
 
 public class Nashorn {
 	/**
@@ -39,7 +37,7 @@ public class Nashorn {
 	/** Language implementation for javascript using the given policy for resolving any potential conflicts with reserved keywords. */
 	public static Language language(OnReservedKeyword policy) {
 		return map -> {
-			ScriptEngine jsEngine = new ScriptEngineManager().getEngineByName("nashorn");
+			ScriptEngine jsEngine = new ScriptEngineManager(Nashorn.class.getClassLoader()).getEngineByName("nashorn");
 			ScriptContext context = jsEngine.getContext();
 
 			String mapName = "nashornScriptBoxMap";
