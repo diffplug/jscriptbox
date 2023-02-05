@@ -15,6 +15,9 @@ apply plugin: 'java-library'
 
 dependencies {
 	testImplementation 'junit:junit:4.13.2'
+	if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_15)) {
+		testImplementation 'org.openjdk.nashorn:nashorn-core:15.4'
+	}
 }
 
 apply from: 干.file('base/maven.gradle')
