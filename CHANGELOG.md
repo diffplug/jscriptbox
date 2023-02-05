@@ -1,6 +1,8 @@
 # JScriptBox releases
 
 ## [Unreleased]
+
+## [3.0.1] - 2023-02-05
 ### Fixed
 - Nashorn script engine is now searched for using the Nashorn classloader rather than the current thread context classloader ([#3](https://github.com/diffplug/jscriptbox/pull/3) to help fix [spotless#803](https://github.com/diffplug/spotless/issues/803)).
 
