@@ -8,7 +8,7 @@
 # GPG_KEY64 (base64)
 #   gpg --export-secret-keys --armor KEY_ID | openssl base64 | pbcopy
 
-name: deploy
+name: release
 on:
   workflow_dispatch:
     inputs:
